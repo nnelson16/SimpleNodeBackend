@@ -14,8 +14,8 @@ MongoClient.connect(db.url, function(err, database) {
   if(err) {
     return console.log(err);
   }
-  require('./app/routes')(app, database);
-
+  const dbobject = database.db('notesdb');
+  require('./app/routes')(app, dbobject);
   app.listen(port, function() {
     console.log('We are live on port: '+port);
   });
